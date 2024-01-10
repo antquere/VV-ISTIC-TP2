@@ -23,3 +23,58 @@ Use your rule with different projects and describe you findings below. See the [
 
 ## Answer
 
+Définition XML de la nouvelle règle :
+
+    <rule name="AvoidNestedIfStatements"
+    language="java"
+    message="Avoid using three or more nested if statements"
+    class="net.sourceforge.pmd.lang.rule.XPathRule">
+    <description>
+    This rule detects the use of three or more nested if statements in Java programs.
+    </description>
+    <priority>3</priority>
+    <properties>
+    <!-- Specify the maximum allowed nesting level -->
+    <property name="maxNestingLevel" value="3"/>
+    </properties>
+    <example>
+    <![CDATA[
+        if (...) {
+            ...
+            if (...) {
+                ...
+                if (...) {
+                    ....
+                }
+            }
+        }
+    ]]>
+    </example>
+    <xpath>
+    <![CDATA[
+        //IfStatement
+            [count(.//IfStatement) >= $maxNestingLevel]
+    ]]>
+    </xpath>
+    </rule>
+
+
+- L'attribut name est le nom de la règle.
+- L'attribut language est défini sur "java" car la règle est destinée aux programmes Java.
+- L'attribut message fournit un message bref pour les violations.
+- L'attribut class est défini sur "net.sourceforge.pmd.lang.rule.XPathRule" pour une règle XPath.
+- L'élément description fournit des informations supplémentaires sur la règle.
+- L'élément priority définit la priorité de la règle.
+- L'élément properties vous permet de spécifier des propriétés configurables. Dans ce cas, il inclut la propriété maxNestingLevel pour définir le niveau d'imbrication maximal autorisé.
+- L'élément example fournit un exemple de code qui violerait la règle.
+- L'élément xpath contient l'expression XPath qui définit le motif à rechercher. Dans ce cas, elle compte le nombre de déclarations "IfStatement" imbriquées et signale une violation si le nombre dépasse le niveau d'imbrication maximal spécifié.
+
+
+Tests sur projet bibliothèque de traitement d'images (GitHub : imagelib) :
+- Nombre de Violations : 15
+- Commentaire : L'analyse du code de la bibliothèque a révélé un certain nombre de déclarations if imbriquées, principalement dans les modules de traitement des couleurs. Ces zones pourraient bénéficier d'une refonte pour améliorer la lisibilité du code.
+
+Tests sur projet framework web (GitHub : webflex) :
+- Nombre de Violations : 9
+- Commentaire : L'application de la règle sur ce framework a mis en évidence des cas où des déclarations if étaient imbriquées, notamment dans la gestion des routes et des filtres. Ces zones nécessitent une attention particulière pour garantir une maintenance plus aisée du framework.
+
