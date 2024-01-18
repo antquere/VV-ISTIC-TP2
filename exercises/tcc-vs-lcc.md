@@ -8,7 +8,7 @@ A refresher on TCC and LCC is available in the [course notes](https://oscarlvp.g
 
 Les circonstances dans lesquelles TCC et LCC produisent la même valeur peuvent se produire lorsque toutes les méthodes de la classe interagissent avec les mêmes sous-ensembles de champs de classe. En d'autres termes, si les méthodes utilisent les mêmes variables membres de la classe, alors TCC et LCC peuvent être égaux.
 
-    public class ComplexExampleClass {
+    public class TestClass {
     private int counter;
     private String text;
     private double[] values;
