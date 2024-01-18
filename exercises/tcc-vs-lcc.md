@@ -37,11 +37,10 @@ Les circonstances dans lesquelles TCC et LCC produisent la même valeur peuvent 
 
     public void unusedMethod() {
         // Ne fait référence à aucune des variables membres
-        // Ne contribue pas à la cohésion entre les méthodes
         }
     }
 
-Dans le code ci-dessus, nous avons ajouté une variable 'values' de type tableau double. La méthode 'calculateAverage' utilise cette variable pour effectuer des calculs, tandis que la méthode 'unusedMethod' ne fait référence à aucune des variables membres de la classe. Cela crée une situation où TCC et LCC produiront la même valeur, car toutes les méthodes interagissent avec le même sous-ensemble de champs de classe, qui comprend : counter, text et values, bien que unusedMethod ne contribue pas à la cohésion en interagissant avec ces variables.
+Dans le code ci-dessus, nous avons ajouté une variable 'values' de type tableau de double. La méthode 'calculateAverage' utilise cette variable pour effectuer des calculs, tandis que la méthode 'unusedMethod' ne fait référence à aucune des variables membres de la classe. Cela crée une situation où TCC et LCC produiront la même valeur, car toutes les méthodes interagissent avec le même sous-ensemble de champs de classe, qui comprend : counter, text et values, bien que unusedMethod ne contribue pas à la cohésion en interagissant avec ces variables.
 
 Pour la dernière question, il est possible que la LCC soit inférieure à la TCC pour une classe donnée. Cela peut se produire lorsque certaines méthodes de la classe n'interagissent pas du tout avec les variables membres de la classe. La TCC mesure la cohésion en fonction des interactions entre les méthodes et les variables membres, tandis que la LCC prend en compte toutes les méthodes, qu'elles interagissent ou non avec les variables membres. Ainsi, si certaines méthodes ne contribuent pas à la cohésion en interagissant avec les variables membres, la LCC peut être inférieure à la TCC.
 
