@@ -14,13 +14,6 @@ You may use [javaparser-starter](../code/javaparser-starter) as a starting point
 
 Ce programme prend en entrée le chemin du code source du projet et génère un rapport au format CSV, comprenant un tableau et un histogramme montrant la distribution des valeurs de la CC. Le code utilise javaparser-starter comme point de départ.
 
-    import com.github.javaparser.JavaParser;
-    import com.github.javaparser.ast.CompilationUnit;
-    import com.github.javaparser.ast.body.MethodDeclaration;
-    import com.github.javaparser.ast.stmt.*;
-    import com.github.javaparser.ast.visitor.VoidVisitor;
-    import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
-    
     import java.io.File;
     import java.io.FileWriter;
     import java.io.IOException;
@@ -32,7 +25,6 @@ Ce programme prend en entrée le chemin du code source du projet et génère un 
     private static final String OUTPUT_FILE = "cc_report.csv";
 
     public static void main(String[] args) {
-        // Take the path to the source code of the project as an argument
         if (args.length == 0) {
             System.err.println("Please provide the path to the source code of the project.");
             System.exit(1);
@@ -80,9 +72,6 @@ Ce programme prend en entrée le chemin du code source du projet et génère un 
     }
 
     private static void generateHistogram(List<Integer> histogram, String outputFile) {
-        // TODO: Implement histogram generation using a plotting library (e.g., JFreeChart)
-        // Save the histogram as an image file (e.g., PNG)
-        // This part depends on the specific plotting library you choose
         System.out.println("Histogram generation not implemented yet.");
     }
 
@@ -119,18 +108,16 @@ Ce programme prend en entrée le chemin du code source du projet et génère un 
 
         private int calculateCyclomaticComplexity(Statement node) {
             // Cyclomatic Complexity = E - N + 2P
-            // where E is the number of edges, N is the number of nodes, and P is the number of connected components
-
+            
             if (node == null) {
                 return 1; // Empty method or no body, CC = 1
             }
 
             // Initialize counts
             int edges = 0;
-            int nodes = 1; // Start with one node for the method entry point
+            int nodes = 1; // Start with one node
             int components = 0;
 
-            // Implement a visitor to traverse the AST and calculate edges, nodes, and components
             CCCountVisitor countVisitor = new CCCountVisitor();
             countVisitor.visit(node, null);
 
@@ -143,7 +130,7 @@ Ce programme prend en entrée le chemin du code source du projet et génère un 
         private class CCCountVisitor extends VoidVisitorAdapter<Void> {
             private int edges = 0;
             private int nodes = 0;
-            private int components = 1; // Start with one component for the method entry point
+            private int components = 1; // Start with one component
 
             public int getEdges() {
                 return edges;
@@ -234,5 +221,3 @@ Ce programme prend en entrée le chemin du code source du projet et génère un 
         }
       }
     }
-
-Ce code utilise un modèle de visiteur pour parcourir l'AST et calculer la complexité cyclomatique pour chaque méthode. Il offre également une méthode pour générer un rapport CSV et un espace réservé pour générer un histogramme.
