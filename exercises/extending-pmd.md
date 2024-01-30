@@ -68,13 +68,6 @@ Définition XML de la nouvelle règle :
 - L'élément properties vous permet de spécifier des propriétés configurables. Dans ce cas, il inclut la propriété maxNestingLevel pour définir le niveau d'imbrication maximal autorisé.
 - L'élément example fournit un exemple de code qui violerait la règle.
 - L'élément xpath contient l'expression XPath qui définit le motif à rechercher. Dans ce cas, elle compte le nombre de déclarations "IfStatement" imbriquées et signale une violation si le nombre dépasse le niveau d'imbrication maximal spécifié.
-
-
-Tests sur projet bibliothèque de traitement d'images (GitHub : imagelib) :
-- Nombre de Violations : 15
-- Commentaire : L'analyse du code de la bibliothèque a révélé un certain nombre de déclarations if imbriquées, principalement dans les modules de traitement des couleurs. Ces zones pourraient bénéficier d'une refonte pour améliorer la lisibilité du code.
-
-Tests sur projet framework web (GitHub : webflex) :
 - Nombre de Violations : 9
 - Commentaire : L'application de la règle sur ce framework a mis en évidence des cas où des déclarations if étaient imbriquées, notamment dans la gestion des routes et des filtres. Ces zones nécessitent une attention particulière pour garantir une maintenance plus aisée du framework.
 
